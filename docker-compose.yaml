@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    image:  goyalvishal63/env-tester:latest
+    command: >
+      /bin/bash -c "
+        uvicorn main:app --host 0.0.0.0:80 --reload
+      "
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/app
